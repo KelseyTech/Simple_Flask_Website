@@ -4,6 +4,7 @@ from flask_login import login_required, current_user
 
 from . import db  
 from .models import Post
+
 views = Blueprint("views", __name__)
 
 
@@ -16,11 +17,11 @@ def home():
 
 
 
-@views.route("/create-post", methods=["GET", "POST"])
+@views.route("/create-post", methods=['GET', 'POST'])
 @login_required
-def post():
-    if request.method == "POST":  
-        text = request.form.get("text")
+def create_post():
+    if request.method == "POST":
+        text = request.form.get('text')
 
         if not text:
             flash('Post cannot be empty', category='error')
@@ -28,11 +29,10 @@ def post():
             post = Post(text=text, author=current_user.id)
             db.session.add(post)
             db.session.commit()
-            flash('Post Created', category='success')
+            flash('Post created!', category='success')
             return redirect(url_for('views.home'))
 
-
-    return render_template("create_post.html", user=current_user)
+    return render_template('create_post.html', user=current_user)
 
 @views.route("/delete-post/<id>")
 @login_required
