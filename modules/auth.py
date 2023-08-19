@@ -33,6 +33,8 @@ def sign_up():
             flash("Username taken", category='error')
         elif password1 != password2:
             flash("Password Don't match", category='error')
+        elif len(password1) < 10:
+            flash("Password needs to be 10 characters or more")
         elif len(username) < 2:
             flash("Username too short", category='error')
         elif len(password1) < 6:
@@ -92,3 +94,9 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('views.home'))
+
+
+
+#------------------
+#---Logout-Page----
+#------------------
