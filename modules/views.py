@@ -3,7 +3,7 @@ from flask import Blueprint, render_template, request, flash, redirect, url_for
 from flask_login import login_required, current_user
 
 from . import db  
-from .models import Post
+from .models import Post, User
 
 views = Blueprint("views", __name__)
 
@@ -41,7 +41,7 @@ def delete_post(id):
 
     if not post:
         flash("Post does not exist.", category='error')
-    elif current_user.id != post.id:
+    elif current_user.id != post.author:
         flash('You do not have permission to delete this post.', category='error')
     else:
         db.session.delete(post)
