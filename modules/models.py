@@ -5,6 +5,7 @@ from sqlalchemy.sql import func
 #db.model is basically a table (rows are the users)(columns have information of users)
 #This class is defining columns in our user table
 class User(db.Model, UserMixin):
+    __tablename__ = 'user'
     #Primary key is needed in all tables almost always an integer 
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(150), unique=True)
@@ -16,9 +17,14 @@ class User(db.Model, UserMixin):
     #back ref gives access to all the user data when getting 
     posts = db.relationship('Post', backref='user', passive_deletes=True)
 
+
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.Text, nullable=False)
     date_created = db.Column(db.DateTime(timezone=True), default=func.now())
     author = db.Column(db.Integer, db.ForeignKey('user.id', ondelete="CASCADE"), nullable=False)
+
+
+
+    
     

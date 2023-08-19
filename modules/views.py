@@ -1,5 +1,5 @@
 # Routes for users not logged in
-from flask import Blueprint, render_template, request, flash, redirect, url_for
+from flask import Blueprint, render_template, render_template_string, request, flash, redirect, url_for
 from flask_login import login_required, current_user
 
 from . import db  
@@ -8,6 +8,9 @@ from .models import Post, User
 views = Blueprint("views", __name__)
 
 
+#------------------
+#----Home-Page-----
+#------------------
 @views.route("/")
 @views.route("/home")
 @login_required
@@ -16,7 +19,9 @@ def home():
     return render_template("home.html", user=current_user, posts=posts)
 
 
-
+#------------------
+#---Create-Post----
+#------------------
 @views.route("/create-post", methods=['GET', 'POST'])
 @login_required
 def create_post():
@@ -34,6 +39,11 @@ def create_post():
 
     return render_template('create_post.html', user=current_user)
 
+
+
+#------------------
+#---Delete-Post----
+#------------------
 @views.route("/delete-post/<id>")
 @login_required
 def delete_post(id):
@@ -50,5 +60,15 @@ def delete_post(id):
 
     return redirect(url_for('views.home'))
 
+#------------------
+#--Profile--Page---
+#------------------
+@views.route('/user/<username>')
+@login_required
+def user(username):
+
+    post = Post.query.filter_by(id=id)
+    user = User.query.filter_by(username=username).first_or_404()
+    return render_template('user.html', user=user, posts=post)
 
 
