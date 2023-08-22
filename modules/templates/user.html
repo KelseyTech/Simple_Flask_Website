@@ -1,3 +1,13 @@
 {% extends "base.html" %}{% block title %}Feed{% endblock %} {% block content %}
-<h1 align="Center">This is {{user.username}}'s Profile</h1>
+<h1 align="Center">This is 's Profile</h1>
+{% if current_user.id == account_id %}
+<div>
+    <h2>THIS IS WORKING????</h2>
+</div>
+{% else %}
+<div>
+    <h2>TESTING ON ANOTHER ACCOUNT</h2>
+</div>
+{% endif %}
+<!--Need to add a user edit button-->
 {% endblock %}

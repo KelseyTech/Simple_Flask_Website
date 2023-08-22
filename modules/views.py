@@ -63,12 +63,12 @@ def delete_post(id):
 #------------------
 #--Profile--Page---
 #------------------
-@views.route('/user/<username>')
+@views.route('/user/<int:account_id>', methods=['GET', 'POST'])
 @login_required
-def user(username):
-
-    post = Post.query.filter_by(id=id)
-    user = User.query.filter_by(username=username).first_or_404()
-    return render_template('user.html', user=user, posts=post)
+def user(account_id):
+    get_user = User.query.filter_by(id=account_id).first()
+    user_id = account_id
+    print(account_id)
+    return render_template('user.html', account_id=account_id)
 
 
