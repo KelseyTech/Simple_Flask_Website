@@ -1,6 +1,7 @@
 {% extends "base.html" %}{% block title %}Feed{% endblock %} {% block content %}
-<h1 align="Center">This is 's Profile</h1>
-{% if current_user.id == account_id %}
+<h1 align="Center">This is {{username}}'s Profile</h1>
+<!--Checks if the ID logged in matches the Profile ID-->
+{% if current_user.username.lower() == username.lower() %}
 <div>
     <h2>THIS IS WORKING????</h2>
 </div>
