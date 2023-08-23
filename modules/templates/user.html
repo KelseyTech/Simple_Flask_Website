@@ -1,21 +1,38 @@
 {% extends "base.html" %}{% block title %}Feed{% endblock %} {% block content %}
-<h1 align="Center">This is {{username}}'s Profile</h1>
+<link rel="stylesheet" href="../static/style.css">
 <!--Checks if the ID logged in matches the Profile ID-->
 {% if current_user.username.lower() == username.lower() %}
-    <div align="center" class="card">
-        <img class="card-img-top" src="../static/images/690eefe3ba1f553e0ea527f51ee407b604b681b4.jpg" alt="Card image cap">
-        <div class="card-body">
-          <p class="card-text">Welcome Home</p>
-        </div>
-        <button type="button" class="btn btn-outline-primary">Edit Profile</button>
-{% else %}
-    <div align="center" class="card">
-        <img class="card-img-top" src="../static/images/Linux-Logo.png" alt="Card image cap">
-        <div class="card-body">
-          <p class="card-text">This is not your profile</p>
-        </div>
-        <button type="button" class="btn btn-outline-primary">Edit Profile</button>
+<div class="container d-flex justify-content-center align-items-center">
+  <div class="card">
+    <div class="upper">
+      <img src="../static/images/background.jpg" class="img-fluid" />
+    </div>
+
+    <div class="user text-center">
+      <div class="profile">
+        <img
+          src="../static/images/pp_pic.jpg"
+          class="rounded-circle"
+          width="80"
+        />
+      </div>
+    </div>
+
+    <div class="mt-5 text-center">
+      <h4 class="mb-0">@{{username}}</h4> 
+      <span class="text-muted d-block mb-2">United Kingdom</span>
+
+      <button class="btn btn-primary btn-sm follow">Edit Profile</button>
+        </div> 
+      </div>
+    </div>
+  </div>
 </div>
+{% else %}
+<h2>Nothing to see here</h2>
 {% endif %}
+
 <!--Need to add a user edit button-->
 {% endblock %}
+
+<!--../static/images/690eefe3ba1f553e0ea527f51ee407b604b681b4.jpg-->
