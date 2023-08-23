@@ -2,12 +2,19 @@
 <h1 align="Center">This is {{username}}'s Profile</h1>
 <!--Checks if the ID logged in matches the Profile ID-->
 {% if current_user.username.lower() == username.lower() %}
-<div>
-    <h2>THIS IS WORKING????</h2>
-</div>
+    <div align="center" class="card">
+        <img class="card-img-top" src="../static/images/690eefe3ba1f553e0ea527f51ee407b604b681b4.jpg" alt="Card image cap">
+        <div class="card-body">
+          <p class="card-text">Welcome Home</p>
+        </div>
+        <button type="button" class="btn btn-outline-primary">Edit Profile</button>
 {% else %}
-<div>
-    <h2>TESTING ON ANOTHER ACCOUNT</h2>
+    <div align="center" class="card">
+        <img class="card-img-top" src="../static/images/Linux-Logo.png" alt="Card image cap">
+        <div class="card-body">
+          <p class="card-text">This is not your profile</p>
+        </div>
+        <button type="button" class="btn btn-outline-primary">Edit Profile</button>
 </div>
 {% endif %}
 <!--Need to add a user edit button-->
