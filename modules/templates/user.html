@@ -1,38 +1,42 @@
 {% extends "base.html" %}{% block title %}Feed{% endblock %} {% block content %}
-<link rel="stylesheet" href="../static/style.css">
-<!--Checks if the ID logged in matches the Profile ID-->
-{% if current_user.username.lower() == username.lower() %}
-<div class="container d-flex justify-content-center align-items-center">
-  <div class="card">
-    <div class="upper">
-      <img src="../static/images/background.jpg" class="img-fluid" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/style.css">
+    <title>Profile Page</title>
+</head>
+<body>
+    <div class="profile-container">
+        <div class="profile-banner">
+            <img src="../static/images/background.jpg" alt="Profile Banner">
+        </div>
+        <div class="profile-picture">
+            <img src="../static/images/pp_pic.jpg" alt="Profile Picture">
+        </div>
+        <div class="profile-header">
+            <h1 class="profile-name">{{username}}</h1>
+            <p class="profile-handle">@{{username}}</p>
+        </div>
+        <div class="profile-content">
+            <p class="profile-bio">I like Cheese and Pickles</p>
+            <ul class="profile-stats">
+                <li><span class="stat-label">Posts </span><span class="stat-value">0</span></li>
+                <li><span class="stat-label">Followers </span><span class="stat-value">0</span></li>
+                <li><span class="stat-label">Following </span><span class="stat-value">0</span></li>
+            </ul>
+        </div>
     </div>
-
-    <div class="user text-center">
-      <div class="profile">
-        <img
-          src="../static/images/pp_pic.jpg"
-          class="rounded-circle"
-          width="80"
-        />
-      </div>
-    </div>
-
-    <div class="mt-5 text-center">
-      <h4 class="mb-0">@{{username}}</h4> 
-      <span class="text-muted d-block mb-2">United Kingdom</span>
-
-      <button class="btn btn-primary btn-sm follow">Edit Profile</button>
-        </div> 
-      </div>
-    </div>
-  </div>
-</div>
-{% else %}
-<h2>Nothing to see here</h2>
-{% endif %}
-
+</body>
+</html>
 <!--Need to add a user edit button-->
+
+
+<!--Code that needs to be added-->
+<!--../static/images/690eefe3ba1f553e0ea527f51ee407b604b681b4.jpg-->
+<!--../static/images/background.jpg-->
+<!--{% if current_user.username.lower() == username.lower() %}-->
+<!--{% endif %}-->
 {% endblock %}
 
-<!--../static/images/690eefe3ba1f553e0ea527f51ee407b604b681b4.jpg-->
