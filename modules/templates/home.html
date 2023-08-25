@@ -1,42 +1,32 @@
-{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
-%}
+{% extends "base.html" %}{% block title %}{{username}}{% endblock %} {% block
+content %}
 
-<div class="container"></div>
-<h1 align="center">{% block header %}Posts{% endblock %}</h1>
-<div id="posts">
-  {% for post in posts %}
-  <div class="card border-dark">
-    <div class="card-header d-flex justify-content-between align-items-center">
-      <a href="/user/{{post.user.username}}">{{post.user.username}}</a>
-      {% if user.id == post.author %}
-      <div class="btn-group">
-        <button
-          type="button"
-          class="btn btn-sm btn-primary dropdown-toggle"
-          data-bs-toggle="dropdown"
-        ></button>
-        <ul class="dropdown-menu">
-          <li>
-            <a href="/delete-post/{{post.id}}" class="dropdown-item">Delete</a>
-          </li>
-        </ul>
+<link rel="stylesheet" href="../static/style.css" />
+
+<div class="container">
+  <h1 align="center">{% block header %}Posts{% endblock %}</h1>
+  <div class="post-container">
+    {% for post in posts %}
+    <div class="post">
+      <div class="post-header">
+        <div class="post-icon">
+          <a href="{{ url_for('views.profile', username=post.user.username)}}">
+            <img src="../static/images/pp_pic.jpg" alt="Profile Picture" />
+        </div>
+        <div class="username">{{post.user.username}}</div>
+      </a>
       </div>
-      {% endif %}
+      <div class="post-content">{{post.text}}</div>
+      <div class="post-footer">
+        <div class="actions">
+          <div class="action-icon">Like</div>
+          <div class="action-icon">Share</div>
+          <div class="action-icon">Comment</div>
+        </div>
+        <div class="post-time">2h ago</div>
+      </div>
     </div>
-    <div class="card-body">
-      <div class="card-text">{{post.text}}</div>
-    </div>
-    <div class="card-footer text-muted">{{post.date_created}}</div>
+    {% endfor %}
   </div>
-  <br/ > {% endfor %}
 </div>
-{% block footer %}
-<div align="center">
-  <a href="/create-post"
-    ><button type="button" class="btn btn-primary btn-lg">
-      Create a Post
-    </button></a
-  >
-</div>
-
-{% endblock %} {% endblock %}
+{% endblock %}
