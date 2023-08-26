@@ -9,8 +9,107 @@ li {
   padding: 0;
 }
 
+/* NavBar Style */
 
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #232323;
+  color: white;
+  padding: 10px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
 
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 34px;
+}
+
+/* Icon */
+.logo i {
+  font-size: 32px;
+  margin-right: 10px;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  background-color: #444;
+  padding: 6px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.search input[type="text"] {
+  border: none;
+  background-color: transparent;
+  padding: 8px;
+  font-size: 14px;
+  color: white;
+  width: 150px;
+}
+
+.search button {
+  background-color: #666;
+  border: none;
+  border-radius: 30px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.search button:hover {
+  background-color: #555;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+}
+
+.menu a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+  padding: 8px;
+  position: relative;
+  transition: background-color 0.3s;
+  border-radius: 35px;
+}
+
+.menu a i {
+  font-size: 18px;
+  margin-right: 5px;
+}
+
+.menu a:hover {
+  background-color: #a1a1a1;
+}
+/* Readable when Collapsed */
+@media screen and (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .logo {
+    margin-bottom: 10px;
+  }
+
+  .search,
+  .menu {
+    margin-top: 10px;
+  }
+
+  .menu a {
+    margin: 5px 0;
+    padding: 5px 0;
+  }
+}
+
+/* Profile Styles */
 .profile-container {
   max-width: 800px;
   min-width: 200px;
@@ -44,18 +143,18 @@ li {
 }
 
 .profile-picture {
-       width: 25%;
-       height: auto;
-       border-radius: 50%;
-       object-fit: cover;
-       position: absolute;
-       bottom: 20%;
-       left: 5%; 
-       transform: translateY(-30%);
-       z-index: 1;
-       overflow: hidden;
-       border: 3px solid white;
-     }
+  width: 25%;
+  height: auto;
+  border-radius: 50%;
+  object-fit: cover;
+  position: absolute;
+  bottom: 20%;
+  left: 5%;
+  transform: translateY(-30%);
+  z-index: 1;
+  overflow: hidden;
+  border: 3px solid white;
+}
 
 .profile-picture img {
   width: 100%;
@@ -113,12 +212,11 @@ li {
 
 /* Attempting to keep the Profile Pic positioned when zoomed in*/
 @media screen and (max-width: 800px) {
-       .profile-picture {
-         width: 20%;
-         bottom: 125px; 
-       }
+  .profile-picture {
+    width: 20%;
+    bottom: 125px;
+  }
 }
-
 
 /*Post Style */
 body {
@@ -128,7 +226,7 @@ body {
   background-color: #f4f4f4;
 }
 
-a{
+a {
   text-decoration: none;
   color: #444;
 }
@@ -138,9 +236,9 @@ a:hover {
 }
 
 .container {
-  max-width: 600px;
-  margin:  auto;
-  padding: 20px;
+  max-width: 800px;
+  margin: auto;
+  padding: 30px;
 }
 
 .post {
@@ -195,4 +293,3 @@ a:hover {
   margin-right: 10px;
   cursor: pointer;
 }
-
