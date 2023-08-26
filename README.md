@@ -7,7 +7,6 @@ Current Features
 - SQL Database
 - Adding and removing Posts
 - A user Profile
-- Collapsing Nav Bar
 - Updated Style / Navbar
 
 Features to be added 
