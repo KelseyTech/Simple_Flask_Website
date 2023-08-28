@@ -255,6 +255,7 @@ a:hover {
   margin-bottom: 10px;
 }
 
+
 .post-icon {
   width: 40px;
   height: 40px;
@@ -271,6 +272,10 @@ a:hover {
 
 .username {
   font-weight: bold;
+}
+
+.post-delete {
+  margin-left: auto;
 }
 
 .post-content {

@@ -11,10 +11,26 @@ content %}
         <div class="post-icon">
           <a href="{{ url_for('views.profile', username=post.user.username)}}">
             <img src="../static/images/pp_pic.jpg" alt="Profile Picture" />
-        </div>
+          </div>
             <!--Shows the username and content of the author-->
             <div class="username">{{post.user.username}}</div>
           </a>
+          <div class="post-delete">
+            {% if user.id == post.author %}
+            <button
+              type="button"
+              class="btn btn-sm btn-dark dropdown-toggle"
+              data-bs-toggle="dropdown"
+            ></button>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="/delete-post/{{post.id}}" class="dropdown-item"
+                  >Delete</a
+                >
+              </li>
+            </ul>
+            {% endif %}
+          </div>
         </div>
         <div class="post-content">{{post.text}}</div>
         <div class="post-footer">
