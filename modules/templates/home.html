@@ -7,7 +7,6 @@ content %}
     {% for post in posts %}
     <div class="post">
       <div class="post-header">
-        <!--Delete Button (Need to add back)-->
         <div class="post-icon">
           <a href="{{ url_for('views.profile', username=post.user.username)}}">
             <img src="../static/images/pp_pic.jpg" alt="Profile Picture" />
@@ -15,6 +14,7 @@ content %}
             <!--Shows the username and content of the author-->
             <div class="username">{{post.user.username}}</div>
           </a>
+          <!--Delete Button-->
           <div class="post-delete">
             {% if user.id == post.author %}
             <button
