@@ -78,6 +78,6 @@ def profile(username):
     if not user:
         flash("User does not exist", category="error")
         return redirect(url_for("views.home"))
-
+    
     post = Post.query.filter_by(author=user.id).all()
     return render_template("user.html", user=current_user, username=username, posts=post)
