@@ -1,55 +1,64 @@
-{% extends "base.html" %}{% block title %}Home{% endblock %} {% block
-content %}
+{% extends "base.html" %}{% block title %}Home{% endblock %} {% block content %}
 <div class="container">
-  <h1 align="center">{% block header %}Posts{% endblock %}</h1>
-    <!--Creates the Individual Post-->
-    {% for post in posts %}
-    <div class="post">
-      <div class="post-header">
-        <div class="post-icon">
-          <a href="{{ url_for('views.profile', username=post.user.username)}}">
-            <img src="../static/images/pp_pic.jpg" alt="Profile Picture" />
-          </div>
-            <!--Shows the username and content of the author-->
-            <div class="username">{{post.user.username}}</div>
-          </a>
-          <!--Delete Button-->
-          <div class="post-delete">
-            {% if user.id == post.author %}
-            <button
-              type="button"
-              class="btn btn-sm btn-dark dropdown-toggle"
-              data-bs-toggle="dropdown"
-            ></button>
-            <ul class="dropdown-menu">
-              <li>
-                <a href="/delete-post/{{post.id}}" class="dropdown-item"
-                  >Delete</a
-                >
-              </li>
-            </ul>
-            {% endif %}
-          </div>
+  <h1 align="center">{% block header %}Home{% endblock %}</h1>
+  <form method="POST">
+  <div class="create-post">
+  <textarea
+      class="form-control"
+      name="text"
+      id="text"
+      placeholder="What's on your mind, {{user.username}}"
+    ></textarea>
+      <button class="post-action" type="submit" >Post</button>
+  </div>
+</br>
+  <!--Creates the Individual Post-->
+  {% for post in posts %}
+  <div class="post" >
+    <div class="post-header">
+      <div class="post-icon">
+        <a href="{{ url_for('views.profile', username=post.user.username)}}">
+          <img src="../static/images/pp_pic.jpg" alt="Profile Picture" />
         </div>
-        <div class="post-content">{{post.text}}</div>
-        <div class="post-footer">
-          <div class="actions">
-            <div class="action-icon">Like</div>
-            <div class="action-icon">Share</div>
-            <div class="action-icon">Comment</div>
-          </div>
-          <div class="post-time">{{post.date_created}}</div>
+          <!--Shows the username and content of the author-->
+          <div class="username">{{post.user.username}}</div>
+        </a>
+        <!--Delete Button-->
+        <div class="post-delete">
+          {% if user.id == post.author %}
+          <button
+            type="button"
+            class="btn btn-sm btn-dark dropdown-toggle"
+            data-bs-toggle="dropdown"
+          ></button>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="/delete-post/{{post.id}}" class="dropdown-item"
+                >Delete</a
+              >
+            </li>
+          </ul>
+          {% endif %}
         </div>
       </div>
-      {% endfor %} {% block footer %}
-      <!--Needs Updating-->
-      <div align="center">
-        <a href="/create-post"
-          ><button type="button" class="btn btn-dark btn-lg">
-            Create a Post
-          </button></a
-        >
+      <div class="post-content">{{post.text}}</div>
+      <div class="post-footer">
+        <div class="actions">
+          <div class="action-icon">Like</div>
+          <div class="action-icon">Share</div>
+          <div class="action-icon">Comment</div>
+        </div>
+        <div class="post-time">{{post.date_created}}</div>
       </div>
+    </div>
+    {% endfor %} {% block footer %}
+    <!--Needs Updating-->
+    <div align="center">
+      <a href="/create-post"
+        ><button type="button" class="btn btn-dark btn-lg">
+          Create a Post
+        </button></a
+      >
     </div>
   </div>
 </div>

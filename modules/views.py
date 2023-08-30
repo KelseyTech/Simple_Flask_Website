@@ -30,7 +30,7 @@ def home():
 # ------------------
 # ---Create-Post----
 # ------------------
-@views.route("/create-post", methods=["GET", "POST"])
+@views.route("/home", methods=["GET", "POST"])
 @login_required
 def create_post():
     if request.method == "POST":
@@ -43,9 +43,8 @@ def create_post():
             db.session.add(post)
             db.session.commit()
             flash("Post created!", category="success")
-            return redirect(url_for("views.home"))
 
-    return render_template("create_post.html", user=current_user)
+    return redirect(url_for("views.home", user=current_user))
 
 
 # ------------------

@@ -18,7 +18,6 @@ li {
   background-color: #232323;
   color: white;
   padding: 10px;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
@@ -217,6 +216,38 @@ li {
   }
 }
 
+/* Create Post */
+
+textarea {
+  height: 50px;
+  resize: none;
+}
+
+.form-control {
+  border: 1px solid #ffffff;
+  border-bottom: 1px solid#e4e6eb;
+}
+
+.post-action {
+  margin-left: 650px;
+  margin-top: 10px;
+  width: 60px;
+  height: 30px; /* Adjusted height */
+  border-radius: 20px; /* Adjusted border radius for the new dimensions */
+  background-color: #202020;
+  color: white;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 15px;
+}
+
+.post-action:hover {
+  background-color: #07a4f3; /* Darker blue color on hover */
+}
+
+
 /*Post Style */
 body {
   font-family: Arial, sans-serif;
@@ -254,7 +285,7 @@ a:hover {
   padding: 30px;
 }
 
-.post {
+.post, .create-post {
   background-color: white;
   border-radius: 10px;
   padding: 15px;
@@ -276,6 +307,8 @@ a:hover {
   margin-right: 10px;
   background-color: #ccc;
 }
+
+
 
 .post-icon img {
   width: 100%;
