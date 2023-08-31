@@ -18,8 +18,9 @@ content %}
       <p class="profile-bio">I like Cheese and Pickles</p>
       <ul class="profile-stats">
         <li>
-          <span class="stat-label">Posts </span
-          ><span class="stat-value">0</span>
+          <span class="stat-label">Posts </span>
+          <!--Shows the number of posts-->
+          <span class="stat-value"> {{post_number}}</span>
         </li>
         <li>
           <span class="stat-label">Followers </span
@@ -33,23 +34,24 @@ content %}
     </div>
   </div>
 </br>
-{% if current_user.username == username %}
-<div class="create-post profile-container">
-  <textarea
-    class="form-control"
-    name="text"
-    id="text"
-    placeholder="What is happening {{user.username}}"
-  ></textarea>
-  <div class="create-post-footer">
-    <div class="create-post-actions">
-      <i class="create-post-icons fas fa-solid fa-image fa-lg" style="color: #000000;"></i>
-      <i class="create-post-icons fas fa-regular fa-video fa-lg" style="color: #000000;"></i>
+<div class="post-container">
+  <h1 align="center">{% block header %}Home{% endblock %}</h1>
+  <form method="POST">
+    <div class="create-post">
+      <textarea
+        class="form-control"
+        name="text"
+        id="text"
+        placeholder="What is happening {{user.username}}"
+      ></textarea>
+      <div class="create-post-footer">
+        <div class="create-post-actions">
+          <i class="create-post-icons fas fa-solid fa-image fa-lg" style="color: #000000;"></i>
+          <i class="create-post-icons fas fa-regular fa-video fa-lg" style="color: #000000;"></i>
+        </div>
+      <button class="post-btn"  type="submit">Post</button>
     </div>
-  <button class="post-btn"  type="submit">Post</button>
-</div>
-{% endif %}
-</div>
+  </div>
   <!--Creates the Individual Post-->
   {% for post in posts %}
   <div class="profile-container post">
