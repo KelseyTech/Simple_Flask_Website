@@ -3,7 +3,7 @@ from flask import (Blueprint, render_template, render_template_string, request, 
 from flask_login import login_required, current_user
 
 from . import db
-from .models import Post, User
+from .models import Post, User, Comment
 
 views = Blueprint("views", __name__)
 
@@ -18,7 +18,6 @@ views = Blueprint("views", __name__)
 @views.route("/home")
 @login_required
 def home():
-    print('hello')
     posts = Post.query.all()
     return render_template("home.html", user=current_user, posts=posts)
 
@@ -45,6 +44,42 @@ def create_post():
             flash("Post created!", category="success")
 
     return redirect(url_for("views.home", user=current_user))
+
+
+
+# -------------------------
+# -------------------------
+# ------Add-Comment--------
+# -------------------------
+# -------------------------
+
+@views.route("/create-comment/<post_id>", methods=['POST'])
+@login_required
+def create_comment(post_id):
+    text = request.form.get('text')
+
+    if not text:
+        flash('Comment cannot be empty.', category='error')
+    else:
+        post = Post.query.filter_by(id=post_id)
+        if post:
+            comment = Comment(
+                text=text, author=current_user.id, post_id=post_id)
+            db.session.add(comment)
+            db.session.commit()
+        else:
+            flash('Post does not exist.', category='error')
+
+    return redirect(url_for('views.home'))
+
+
+
+
+
+
+
+
+
 
 # -------------------------
 # -------------------------
