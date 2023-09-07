@@ -1,8 +1,7 @@
-{% extends "base.html" %}{% block title %}{{username}}{% endblock %} {% block
+{% extends "posts.html" %}{% block title %}{{username}}{% endblock %} {% block
 content %}
 <title>Profile Page</title>
 <body>
-  
   <div class="profile-container">
     <div class="profile-banner">
       <img src="../static/images/background.jpg" alt="Profile Banner" />
@@ -33,64 +32,74 @@ content %}
       </ul>
     </div>
   </div>
+</body>
 </br>
 <div class="post-container">
   <form method="POST">
+    {% if current_user.username == username %}
     <div class="create-post">
       <textarea
         class="form-control"
         name="text"
         id="text"
-        placeholder="What is happening {{user.username}}"
+        placeholder="What is happening, {{user.username}}!"
       ></textarea>
+      
       <div class="create-post-footer">
         <div class="create-post-actions">
-          <i class="create-post-icons fas fa-solid fa-image fa-lg" style="color: #000000;"></i>
-          <i class="create-post-icons fas fa-regular fa-video fa-lg" style="color: #000000;"></i>
+          <i
+            class="create-post-icons fas fa-solid fa-image fa-lg"
+            style="color: #000000"
+          ></i>
+          <i
+            class="create-post-icons fas fa-regular fa-video fa-lg"
+            style="color: #000000"
+          ></i>
         </div>
-      <button class="post-btn"  type="submit">Post</button>
+        <button class="post-btn" type="submit">Post</button>
+      </div>
+      {% endif %}
     </div>
-  </div>
-  <!--Creates the Individual Post-->
-  {% for post in posts %}
-  <div class="profile-container post">
-    <div class="post-header">
-      <div class="post-icon">
-        <a href="{{ url_for('views.profile', username=post.user.username)}}">
-          <img src="../static/images/pp_pic.jpg" alt="Profile Picture" />
+    <!--Creates the Individual Post-->
+    {% for post in posts %}
+    <div class="profile-container post">
+      <div class="post-header">
+        <div class="post-icon">
+          <a href="{{ url_for('views.profile', username=post.user.username)}}">
+            <img src="../static/images/pp_pic.jpg" alt="Profile Picture" />
+          </div>
+            <!--Shows the username and content of the author-->
+            <div class="username">{{post.user.username}}</div>
+          </a>
+          <!--Delete Button-->
+          <div class="post-delete">
+            {% if user.id == post.author %}
+            <button
+              type="button"
+              class="btn btn-sm btn-dark dropdown-toggle"
+              data-bs-toggle="dropdown"
+            ></button>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="/delete-post/{{post.id}}" class="dropdown-item"
+                  >Delete</a
+                >
+              </li>
+            </ul>
+            {% endif %}
+          </div>
         </div>
-          <!--Shows the username and content of the author-->
-          <div class="username">{{post.user.username}}</div>
-        </a>
-        <!--Delete Button-->
-        <div class="post-delete">
-          {% if user.id == post.author %}
-          <button
-            type="button"
-            class="btn btn-sm btn-dark dropdown-toggle"
-            data-bs-toggle="dropdown"
-          ></button>
-          <ul class="dropdown-menu">
-            <li>
-              <a href="/delete-post/{{post.id}}" class="dropdown-item"
-                >Delete</a
-              >
-            </li>
-          </ul>
-          {% endif %}
+        <div class="post-content">{{post.text}}</div>
+        <div class="post-footer">
+          <div class="actions">
+            <div class="action-icon">Like</div>
+            <div class="action-icon">Share</div>
+            <div class="action-icon">Comment</div>
+          </div>
+          <div class="post-time">{{post.date_created}}</div>
         </div>
       </div>
-      <div class="post-content">{{post.text}}</div>
-      <div class="post-footer">
-        <div class="actions">
-          <div class="action-icon">Like</div>
-          <div class="action-icon">Share</div>
-          <div class="action-icon">Comment</div>
-        </div>
-        <div class="post-time">{{post.date_created}}</div>
-      </div>
     </div>
-  </div>
-  {% endfor %} {% block footer %}
-</body>
-{% endblock %} {% endblock %}
+    {% endfor %} {% block footer %} {% endblock %} {% endblock %}
+  </form>
+</div>
