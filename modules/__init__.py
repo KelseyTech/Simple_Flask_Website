@@ -21,7 +21,7 @@ def create_app():
 
 
     #This imports all the models before the database is created
-    from .models import User, Post
+    from .models import User, Post, Comment
 
     db.init_app(app)
 
